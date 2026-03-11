@@ -1,0 +1,59 @@
+========================================================================
+EXPERIMENT A: DES BRUTE-FORCE EXECUTION LOGS
+Target: a811f82df072364a:5345435245543132
+Key (Đối chiếu): c2e940c606afa4f3
+Hardware: NVIDIA GeForce RTX 3070 Ti Laptop GPU
+========================================================================
+
+========================================================================
+[TEST 1] FULL KEYSPACE ESTIMATION (ETA CALCULATION)
+- Mục đích: Đo lường tốc độ và thời gian ước tính vét cạn không gian khóa.
+- Kịch bản: Bỏ qua 1 byte 0x00 (tổng không gian 255 x 256^7) để lách lỗi tràn số.
+========================================================================
+Status...........: Running
+Hash.Mode........: 14000 (DES (PT = $salt, key = $pass))
+Time.Estimated...: Sun Mar 27 19:15:16 2044 (18 years, 18 days)
+Guess.Mask.......: ?1?b?b?b?b?b?b?b [8]
+Guess.Charset....: -1 custom.chr, -2 N/A, -3 N/A, -4 N/A, -5 N/A, -6 N/A, -7 N/A, -8 N/A
+Speed.#01........: 32260.4 MH/s (46.90ms) @ Accel:1024 Loops:1024 Thr:32 Vec:1
+Progress.........: 171328929792/18374686479671623680 (0.00%)
+Hardware.Mon.#01.: Temp: 52c Util: 98% Core:1665MHz Mem:7000MHz Bus:8
+
+========================================================================
+[TEST 2] TARGETED KEY CRACKING (SUCCESSFUL EXPLOIT)
+- Mục đích: Minh chứng việc phá khóa thành công trên thực tế.
+- Kịch bản: Biết trước 2 byte đầu (c2, e9), vét cạn 6 byte còn lại.
+========================================================================
+
+--- [GIAI ĐOẠN 1: BẮT ĐẦU CHẠY ƯỚC TÍNH] ---
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 14000 (DES (PT = $salt, key = $pass))
+Hash.Target......: a811f82df072364a:5345435245543132
+Time.Started.....: Wed Mar 11 11:28:31 2026 (1 sec)
+Time.Estimated...: Wed Mar 11 15:13:10 2026 (3 hours, 44 mins)
+Guess.Mask.......: ?1?2?b?b?b?b?b?b [8]
+Guess.Charset....: -1 c2, -2 e9, -3 N/A, -4 N/A, -5 N/A, -6 N/A, -7 N/A, -8 N/A 
+Speed.#01........: 20881.6 MH/s (71.72ms) @ Accel:1024 Loops:1024 Thr:32 Vec:1
+Progress.........: 24696061952/281474976710656 (0.01%)
+Hardware.Mon.#01.: Temp: 40c Util: 99% Core:1095MHz Mem:6000MHz Bus:8
+
+
+--- [GIAI ĐOẠN 2: CRACKED] ---
+a811f82df072364a:5345435245543132:$HEX[c2e940c606afa4f2]  
+                                                      
+Session..........: hashcat
+Status...........: Cracked
+Hash.Mode........: 14000 (DES (PT = $salt, key = $pass))
+Hash.Target......: a811f82df072364a:5345435245543132
+Time.Started.....: Wed Mar 11 11:28:31 2026 (2 hours, 26 mins)
+Time.Estimated...: Wed Mar 11 13:55:02 2026 (0 secs)
+Guess.Mask.......: ?1?2?b?b?b?b?b?b [8]
+Guess.Charset....: -1 c2, -2 e9, -3 N/A, -4 N/A, -5 N/A, -6 N/A, -7 N/A, -8 N/A 
+Speed.#01........: 30440.0 MH/s (49.66ms) @ Accel:1024 Loops:1024 Thr:32 Vec:1
+Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
+Progress.........: 266794644275200/281474976710656 (94.78%)
+Hardware.Mon.#01.: Temp: 80c Util: 98% Core:1560MHz Mem:7000MHz Bus:8
+
+Started: Wed Mar 11 11:28:26 2026
+Stopped: Wed Mar 11 13:55:04 2026

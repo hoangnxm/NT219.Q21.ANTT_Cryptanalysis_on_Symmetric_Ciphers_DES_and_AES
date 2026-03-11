@@ -1,0 +1,2 @@
+Plaintext (String): SECRET12
+Plaintext (Hex)   : 5345435245543132
